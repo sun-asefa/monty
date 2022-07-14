@@ -42,34 +42,10 @@ void m_push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	n = atoi(arg);
-	m_push2(stack, n);
-}
-
-/**
- * m_push2 - push an integer onto the stack
- * @stack: double pointer to the beginning of the stack
- * @n: number to push
- *
- * Return: void
- */
-void m_push2(stack_t **stack, int n)
-{
-	if (var.queue)
+	if (!add_node(stack, n))
 	{
-		if (!add_node_end(stack, n))
-		{
-			dprintf(STDOUT_FILENO, "Error: malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
-		var.stack_len++;
+		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		if (!add_node_start(stack, n))
-		{
-			dprintf(STDOUT_FILENO, "Error: malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
-		var.stack_len++;
-	}
+	var.stack_len++;
 }
